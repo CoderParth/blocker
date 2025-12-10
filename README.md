@@ -7,7 +7,7 @@ Browser extensions that are currently available surely do a great job, but what 
 
 ## Installation
 
-`go install github.com/coderparth/blocker`
+`go install github.com/coderparth/blocker@latest`
 
 ## After Installation
 
