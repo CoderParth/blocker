@@ -44,8 +44,8 @@ Blocker currently supports the following commands:
 ./blocker disable <website-name> # If disabled, enables the given website for blocking. 
 `
 
-// NewHostsFile applies correct hosts path depending on the "OS",
-// and returns a newly initialized RealHostFile.
+// NewHostsFile applies correct hosts path depending on the "Operating System",
+// and returns a newly initialized HostsFile.
 func NewHostsFile() *HostsFile {
 	path := "/etc/hosts"
 	if runtime.GOOS == "windows" {
@@ -61,7 +61,7 @@ func NewHostsFile() *HostsFile {
 }
 
 // Read opens the hosts file in read only mode, creates a new scanner, scans the file (one line at a time),
-// and appends the content to h.hosts.content. In case blocker start and blocker end is found, their
+// and appends the content to h.content. In case blocker start and blocker end is found, their
 // line positions are stored.
 func (h *HostsFile) Read() {
 	f, err := os.Open(h.path) // Open in read only mode.
@@ -87,7 +87,7 @@ func (h *HostsFile) Read() {
 	h.content = content
 }
 
-// write opens the hosts file in read-write mode, and writes the new content (from h.hosts.content)
+// write opens the hosts file in an overwrite mode, and writes the new content (from h.content)
 // to the hosts file.
 func (h *HostsFile) Write() {
 	f, err := os.OpenFile(h.path, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
@@ -136,9 +136,9 @@ func alreadyExists(h *HostsFile) bool {
 	return false
 }
 
-// add Command adds the website given in the argument to the hosts file.
+// add Command adds the website provided in the argument to the hosts file.
 // The site is added in between the "blocker start" and "blocker end" section of the file
-// Example (hosts file):
+// Example after writing to hosts file:
 // # ---------- BLOCKER START ----------
 // < Site is added here>
 // # ---------- BLOCKER END ----------
@@ -148,15 +148,14 @@ func add(h *HostsFile, cmds []string) {
 		fmt.Printf("%s has already been added. \n", h.site)
 		os.Exit(1)
 	}
-	// check if this is the first time writing to this file.
 	if h.startPos == 0 && h.endPos == 0 { // Indicates writing to the file for the first time.
 		h.content = append(h.content, "# ---------- BLOCKER START ----------")
-		// For a website, generate website.com and www.website.com
+		// For the given website, generate website.com and www.website.com
 		h.content = append(h.content, "127.0.0.1 "+h.site+".com"+" www."+h.site+".com"+"\n")
 		h.content = append(h.content, "# ---------- BLOCKER END   ----------")
 	} else {
-		// Create a new var content, and append the "site to be added" with an ip address,
-		// to the content of the file from the beginning to to just where the blocker line ends.
+		// Create a new var content, and append two strings: site.com and "site to be added" with an ip address,
+		// Append this before the blocker line ends. # See an example provided at the beginning of this function.
 		content := append(h.content[:h.endPos-1], "127.0.0.1 "+h.site+".com"+" www."+h.site+".com"+"\n")
 		// // Append remaining original content of the file to the content variable.
 		content = append(content, h.content[h.endPos:]...)
@@ -177,7 +176,7 @@ func prepare(h *HostsFile, cmds []string) {
 	h.Read()
 }
 
-// complete calls h.Write() to overwrite the hosts file with new content, and calls
+// complete calls h.Write() to overwrite the hosts file with the new content, and calls
 // flushDnsCache()
 func complete(h *HostsFile) {
 	h.Write()
@@ -186,7 +185,7 @@ func complete(h *HostsFile) {
 	}
 }
 
-// add Command removes the website given in the argument from the hosts file.
+// remove command removes the provided website from the hosts file.
 func remove(h *HostsFile, cmds []string) {
 	prepare(h, cmds)
 	if e := alreadyExists(h); !e {
