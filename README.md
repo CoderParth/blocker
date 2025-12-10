@@ -1,4 +1,4 @@
- 
+
 # Blocker
 
 Blocker allows you to block your desired websites so that you can stay focused.
@@ -20,33 +20,91 @@ Browser extensions that are currently available surely do a great job, but what 
 
 ---
 
+# Setting up Go Tools PATH (if you haven't done it yet)
+
+This guide helps you set up the `PATH` for Go tools installed with `go install` so they can be run from anywhere.
+
+## Linux & macOS
+
+1. **Edit your shell configuration:**
+
+   - **For Bash (Linux/macOS):**
+     ```bash
+     nano ~/.bashrc   # Linux
+     nano ~/.bash_profile  # macOS
+     ```
+   
+   - **For Zsh (Linux/macOS):**
+     ```bash
+     nano ~/.zshrc
+     ```
+
+2. **Add this line** at the end of the file:
+   ```bash
+   export PATH=$PATH:$HOME/go/bin
+   ```
+
+3. **Apply the changes:**
+   ```bash
+   source ~/.bashrc  # For Linux
+   source ~/.bash_profile  # For macOS
+   source ~/.zshrc  # For Zsh
+   ```
+
+4. **Verify:**
+   ```bash
+   sudo blocker help      
+   ```
+
+---
+
+## Windows
+
+1. **Edit Environment Variables:**
+
+   - Open **Start Menu** > **Environment Variables** > **Edit the system environment variables**.
+   - Under **User variables**, find and edit the `Path` variable.
+   - Add this path:
+     ```text
+     C:\Users\<Username>\go\bin
+     ```
+
+     Replace `<Username>` with your actual Windows username or the custom Go installation path.
+
+2. **Verify:**
+   ```
+   blocker list     
+   ```
+
+
+
 ##  macOS & Linux Usage
 
 ### Add a website
 ```
-sudo ./blocker add <website-name>  # Adds the given website to the blocked list. 
+sudo blocker add <website-name>  # Adds the given website to the blocked list. 
 ```
 
 ### Remove a website
 ```
-sudo ./blocker remove <website-name> # Removes the given website from the blocked list. 
+sudo blocker remove <website-name> # Removes the given website from the blocked list. 
 ```
 
 ### List all added websites
 ```
-sudo ./blocker list  # lists all the enabled and disabled websites present in the blocked list.
+sudo blocker list  # lists all the enabled and disabled websites present in the blocked list.
 ```
 
 ### Disable blocking for a website
 ```
-sudo ./blocker disable <website-name>  
+sudo blocker disable <website-name>  
 # If a website is enabled, this command disables the given website from blocking. 
 
 ```
 
 ### Enable blocking for a website
 ```
-sudo ./blocker enable <website-name>  # If disabled, it enables the given website for blocking. 
+sudo blocker enable <website-name>  # If disabled, it enables the given website for blocking. 
 ```
 
 ---
@@ -58,27 +116,27 @@ sudo ./blocker enable <website-name>  # If disabled, it enables the given websit
 
 ### Add a website
 ```
-.\blocker.exe add <website-name>
+blocker add <website-name>
 ```
 
 ### Remove a website
 ```
-.\blocker.exe remove <website-name>
+blocker remove <website-name>
 ```
 
 ### List all added websites
 ```
-.\blocker.exe list
+blocker list
 ```
 
 ### Disable blocking for a website
 ```
-.\blocker.exe disable <website-name>
+blocker disable <website-name>
 ```
 
 ### Enable blocking for a website
 ```
-.\blocker.exe enable <website-name>
+blocker enable <website-name>
 ```
 
 ---
@@ -86,5 +144,4 @@ sudo ./blocker enable <website-name>  # If disabled, it enables the given websit
 ## Note
 
 Although, at this moment, `enable` and `disable` are similar to `add` and `remove`, future features such as time-based blocking, scheduling a block, focus sessions, etc. will be built on top of the `enable` and `disable` commands.
-
 
