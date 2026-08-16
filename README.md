@@ -19,37 +19,6 @@ curl -fsSL https://raw.githubusercontent.com/parthsigdel/otp/main/install.sh | s
 irm https://raw.githubusercontent.com/parthsigdel/otp/main/install.ps1 | iex
 ```
 
-## Setting up Go Tools PATH (if you haven't already)
-
-Add your Go bin directory to your PATH so `go install`ed tools can be run from anywhere.
-
-Add this to your shell config (~/.bashrc, ~/.zshrc, etc.):
-```bash
-export PATH=$PATH:$(go env GOPATH)/bin
-```
-
-Reload it:
-```bash
-source ~/.zshrc  # or ~/.bashrc
-```
-
-```bash
-export PATH=$PATH:$(go env GOPATH)/bin
-```
-
-Then reload it:
-
-```bash
-source ~/.zshrc  # or ~/.bashrc, etc.
-```
-
-**Windows:** Open **Start Menu** → search **"Edit the system environment variables"** → under **User variables**, edit `Path` and add:
-
-```
-C:\Users\<YourUsername>\go\bin
-```
-
-
 ## Usage
 
 > Enter only the **name** of the website (e.g., `youtube`, not `youtube.com`).
