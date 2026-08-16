@@ -7,10 +7,17 @@ Browser extensions that are currently available surely do a great job, but what 
 
 ## Installation
 
+### macOS / Linux
+
 ```
-go install github.com/parthsigdel/blocker@latest
+curl -fsSL https://raw.githubusercontent.com/parthsigdel/otp/main/install.sh | sh
 ```
 
+### Windows
+
+```
+irm https://raw.githubusercontent.com/parthsigdel/otp/main/install.ps1 | iex
+```
 
 ## Setting up Go Tools PATH (if you haven't already)
 
