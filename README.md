@@ -13,7 +13,7 @@ Browser extensions that are currently available surely do a great job, but what 
 curl -fsSL https://raw.githubusercontent.com/parthsigdel/otp/main/install.sh | sh
 ```
 
-### Windows
+### Windows (Powershell)
 
 ```
 irm https://raw.githubusercontent.com/parthsigdel/otp/main/install.ps1 | iex
