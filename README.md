@@ -10,13 +10,13 @@ Browser extensions that are currently available surely do a great job, but what 
 ### macOS / Linux
 
 ```
-curl -fsSL https://raw.githubusercontent.com/parthsigdel/otp/main/install.sh | sh
+curl -fsSL https://sh.parthsigdel.com/blocker | sh
 ```
 
 ### Windows (Powershell)
 
 ```
-irm https://raw.githubusercontent.com/parthsigdel/otp/main/install.ps1 | iex
+irm https://sh.parthsigdel.com/blocker.ps1 | iex
 ```
 
 ## Usage
