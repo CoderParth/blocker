@@ -27,21 +27,14 @@ func main() {
 	help()
 }
 
-var helpText string = ` 
+var helpText string = `Usage: blocker <command> [website-name]
 
-Note: Please enter only the name of the website (e.g., 'youtube', not 'youtube.com').
+Commands:
+  add <website-name>     Add the given website to the blocked list
+  remove <website-name>  Remove the given website from the blocked list
+  list                   List all enabled and disabled websites in the blocked list
 
-Blocker currently supports the following commands: 
-
-./blocker add <website-name> # Adds the given website to the blocked list. 
-
-./blocker remove <website-name> # Removes the given website from the blocked list. 
-
-./blocker list # lists all the enabled and disabled websites present in the blocked list.
-
-./blocker enable <website-name> # If disabled, enables the given website for blocking. 
-
-./blocker disable <website-name> # If disabled, enables the given website for blocking. 
+Note: enter only the website name (e.g. 'youtube', not 'youtube.com').
 `
 
 // NewHostsFile applies correct hosts path depending on the "Operating System",
@@ -247,7 +240,7 @@ func enable(h *HostsFile, cmds []string) {
 	printFinalMsg(h, "is now enabled for blocking")
 }
 
-// enable comments the requested website in the hosts file.
+// "disable" turns the requested website into a comment in the hosts file.
 func disable(h *HostsFile, cmds []string) {
 	prepare(h, cmds)
 	if e := alreadyExists(h); !e {
