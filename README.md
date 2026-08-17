@@ -23,34 +23,34 @@ irm https://sh.parthsigdel.com/blocker.ps1 | iex
 
 > Enter only the **name** of the website (e.g., `youtube`, not `youtube.com`).
 
-**macOS & Linux:** `sudo` requires the full path because it doesn't inherit your user's PATH:
+**macOS & Linux:** 
 
 ```bash
-sudo ~/go/bin/blocker <command>
+sudo blocker <command>
 ```
 
 **Windows:** Run your terminal (Command Prompt or PowerShell) as Administrator.
 
 ### Add a website
 ```bash
-sudo ~/go/bin/blocker add <website-name>
+sudo blocker add <website-name>
 ```
 ```
-blocker add <website-name>         # Windows
+blocker add <website-name>         # Windows: Run Powershell as Administrator
 ```
 
 ### Remove a website
 ```bash
-sudo ~/go/bin/blocker remove <website-name>
+sudo blocker remove <website-name>
 ```
 ```
-blocker remove <website-name>      # Windows
+blocker remove <website-name>      # Windows: Run Powershell as Administrator
 ```
 
 ### List blocked websites
 ```bash
-sudo ~/go/bin/blocker list
+sudo blocker list
 ```
 ```
-blocker list                       # Windows
+blocker list                       # Windows: Run Powershell as Administrator
 ```
